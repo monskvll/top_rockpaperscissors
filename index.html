@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+    <link rel="shortcut icon" href="#"> <!-- line added to avoid faveicon.ico error -->
+</head>
+<body>
+    <script>
+        
+        /* function computerPlay returns a random outcome from the outcomes array as the computer's choice*/
+        function computerPlay() {
+        
+            let outcomes = ["rock", "paper", "scissors"];
+
+            let randomOutcome = Math.floor(Math.random() * outcomes.length);
+
+            return outcomes[randomOutcome];
+        }    
+        
+        /* playerScore and computerScore variables present in playRound function to add score according to the victor and present it in the end of round 5 */
+        let playerScore = 0;
+        let computerScore = 0;
+
+        /* Function containing conditionals with the possible results for the player's selection versus the computer's (including draw) and input which isn't valid (anything not part of the outcomes array) */
+        function playRound(playerSelection, computerSelection) {            
+            
+            if (playerSelection === computerSelection) {                
+                return("Draw! You both played the same hand.")
+
+            } else if (playerSelection === "rock" && computerSelection === "scissors") {
+                playerScore++;
+                return("You win! Rock beats scissors.")                
+
+            } else if (playerSelection === "rock" && computerSelection === "paper") {
+                computerScore++;
+                return("You lose! Paper beats rock.")
+            
+            } else if (playerSelection === "paper" && computerSelection === "scissors") {
+                computerScore++;
+                return("You lose! Scissors beats paper.")
+
+            } else if (playerSelection === "paper" && computerSelection === "rock") {
+                playerScore++;
+                return("You win! Paper beats rock.")
+
+            } else if (playerSelection === "scissors" && computerSelection === "paper") {
+                playerScore++;
+                return("You win! Scissors beats paper.")
+
+            } else if (playerSelection === "scissors" && computerSelection === "rock") {
+                computerScore++;
+                return("You lose! Rock beats scissors.")
+
+            } else {
+                return("That's not a valid option!")
+            }
+        }        
+
+        function game() {           
+
+            /* for loop to make the game have 5 rounds */
+            for (i = 0; i < 5; i++ ) {
+
+                let computerSelection = computerPlay();
+
+                /* Prompt for player's choice (with added .toLowerCase() in order to make the input case insensitive */
+                let playerSelection = prompt("Rock, paper or scissors?").toLowerCase();
+                
+                /* Results presentation (with i + 1 in order for round number not to start on 0) */
+                console.log("----------ROUND " + ( i + 1 ) + " ----------");
+                console.log("The computer played " + computerSelection + ".");
+                console.log("You played " + playerSelection + ".");
+                console.log(playRound(playerSelection, computerSelection));
+                console.log("Player: " + playerScore);
+                console.log("Computer: " + computerScore);
+            }
+            
+            /* Conditional to compare playerScore with computerScore and print the player's victory/loss/draw statement */
+            if (i = 5 && playerScore > computerScore ) {
+                console.log("You win the game!")
+
+            } else if (i = 5 && playerScore < computerScore ) {
+                console.log("You lose the game!")
+
+            } else {
+                console.log("It's a draw!")
+            }
+        }
+
+        /* IT'S TIME TO PLAY THE */
+        game();
+
+    </script>
+</body>
+</html>
