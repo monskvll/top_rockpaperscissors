@@ -24,49 +24,39 @@
         let computerScore = 0;
 
         /* Function containing conditionals with the possible results for the player's selection versus the computer's (including draw) and input which isn't valid (anything not part of the outcomes array) */
-        function playRound(playerSelection, computerSelection) {            
-            
-            if (playerSelection === computerSelection) {                
+        function playRound(playerSelection, computerSelection) {
+
+            if ((playerSelection === computerSelection)) {
                 return("Draw! You both played the same hand.")
+            }
 
-            } else if (playerSelection === "rock" && computerSelection === "scissors") {
+            if ((playerSelection === "rock" && computerSelection === "scissors") || (playerSelection === "scissors" && computerSelection === "paper") || (playerSelection === "paper" && computerSelection === "rock")) {
                 playerScore++;
-                return("You win! Rock beats scissors.")                
+                return("You win: " + playerSelection + " beats " + computerSelection + ".")
+            }
 
-            } else if (playerSelection === "rock" && computerSelection === "paper") {
+            else {
                 computerScore++;
-                return("You lose! Paper beats rock.")
-            
-            } else if (playerSelection === "paper" && computerSelection === "scissors") {
-                computerScore++;
-                return("You lose! Scissors beats paper.")
-
-            } else if (playerSelection === "paper" && computerSelection === "rock") {
-                playerScore++;
-                return("You win! Paper beats rock.")
-
-            } else if (playerSelection === "scissors" && computerSelection === "paper") {
-                playerScore++;
-                return("You win! Scissors beats paper.")
-
-            } else if (playerSelection === "scissors" && computerSelection === "rock") {
-                computerScore++;
-                return("You lose! Rock beats scissors.")
-
-            } else {
-                return("That's not a valid option!")
+                return("You lose: " + computerSelection + " beats " + playerSelection + ".")
             }
         }        
 
         function game() {           
 
             /* for loop to make the game have 5 rounds */
-            for (i = 0; i < 5; i++ ) {
+            for (i = 0; i < 5; i++ ) {                
 
                 let computerSelection = computerPlay();
 
                 /* Prompt for player's choice (with added .toLowerCase() in order to make the input case insensitive */
                 let playerSelection = prompt("Rock, paper or scissors?").toLowerCase();
+                
+                /* Conditional for cases in which string inserted in the prompt is different from "rock", "paper" or "scissors". It also doesn't add a round in the for loop. */
+                if ((playerSelection != "rock") && (playerSelection != "paper") && (playerSelection != "scissors")) {
+                    console.log("## That's not a valid option! ##");
+                    i--;
+                    continue;                    
+                }
                 
                 /* Results presentation (with i + 1 in order for round number not to start on 0) */
                 console.log("----------ROUND " + ( i + 1 ) + " ----------");
@@ -79,13 +69,13 @@
             
             /* Conditional to compare playerScore with computerScore and print the player's victory/loss/draw statement */
             if (i = 5 && playerScore > computerScore ) {
-                console.log("You win the game!")
+                console.log("### You win the game! ###")
 
             } else if (i = 5 && playerScore < computerScore ) {
-                console.log("You lose the game!")
+                console.log("### You lose the game! ###")
 
             } else {
-                console.log("It's a draw!")
+                console.log("### It's a draw! ###")
             }
         }
 
