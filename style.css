@@ -39,8 +39,16 @@ button:active {
     text-transform: uppercase;
     flex-direction: column;
     font-family: Arial, sans-serif;
-    text-align: center;    
+    text-align: center;
+    animation: fadeIn ease 3s;    
+}
+
+@keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
 }
 
 
-/* black: #252525    gray: #a4a4a4    white: #efefef    gold: #eaa807  red: #c42640
+
+
+/* black: #252525; gray: #a4a4a4; white: #efefef; gold: #eaa807; red: #c42640

@@ -65,7 +65,7 @@
                 playRound(playerSelection, computerSelection) + newline +
                 "Player: " + playerScore + newline +
                 "Computer: " + computerScore +newline +
-                "- - - - -";
+                "- - - - - - - - - - - - - - - - - - -";
 
             if (playerScore === 5 ) {
                     finalResult.textContent += ("[You win the game]");
@@ -76,7 +76,7 @@
                     resetScore();                    
             }   
             
-            container.appendChild(resultDisplay);            
+            container.appendChild(resultDisplay);                   
             container.insertBefore(resultDisplay, container.firstChild);
             container.insertBefore(finalResult, resultDisplay);
         }        
