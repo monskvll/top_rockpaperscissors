@@ -1,5 +1,16 @@
+let buttons = document.querySelectorAll('button');
+let playerSelection;
 
-/* function computerPlay returns a random outcome from the outcomes array as the computer's choice*/
+let playerScore = 0;
+let computerScore = 0; 
+
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        playerSelection = button.id;
+        computerSelection = computerPlay();
+        game();                 
+    })});  
+
 function computerPlay() {
 
     let outcomes = ["rock", "paper", "scissors"];
@@ -9,21 +20,6 @@ function computerPlay() {
     return outcomes[randomOutcome];
 }
 
-let buttons = document.querySelectorAll('button');
-let playerSelection;        
-
-buttons.forEach((button) => {
-    button.addEventListener('click', () => {
-        playerSelection = button.id;
-        computerSelection = computerPlay();
-        game();                 
-    })});        
-
-/* playerScore and computerScore variables present in playRound function to add score according to the victor and present it in the end of round 5 */
-let playerScore = 0;
-let computerScore = 0;
-
-/* Function containing conditionals with the possible results for the player's selection versus the computer's (including draw) and input which isn't valid (anything not part of the outcomes array) */
 function playRound() {
     
     if ((playerSelection === computerSelection)) {
