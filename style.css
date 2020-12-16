@@ -47,4 +47,15 @@ button:active {
     100% {opacity: 1;}
 }
 
+@media only screen and (max-width: 480px) {
+    button {
+        width: 7em;
+        height: 7em;
+        margin: 3em .5em;
+    }
+
+    #container {
+        font-size: .8em;
+    }
+}
 /* black: #252525; gray: #a4a4a4; white: #efefef; gold: #eaa807; red: #c42640
