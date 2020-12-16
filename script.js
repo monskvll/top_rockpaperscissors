@@ -1,82 +1,81 @@
 
-        /* function computerPlay returns a random outcome from the outcomes array as the computer's choice*/
-        function computerPlay() {
-        
-            let outcomes = ["rock", "paper", "scissors"];
+/* function computerPlay returns a random outcome from the outcomes array as the computer's choice*/
+function computerPlay() {
 
-            let randomOutcome = Math.floor(Math.random() * outcomes.length);
+    let outcomes = ["rock", "paper", "scissors"];
 
-            return outcomes[randomOutcome];
-        }
+    let randomOutcome = Math.floor(Math.random() * outcomes.length);
 
-        let buttons = document.querySelectorAll('button');
-        let playerSelection;        
+    return outcomes[randomOutcome];
+}
 
-        buttons.forEach((button) => {
-            button.addEventListener('click', () => {
-                playerSelection = button.id;
-                computerSelection = computerPlay();
+let buttons = document.querySelectorAll('button');
+let playerSelection;        
 
-                game();                 
-            })});        
-        
-        /* playerScore and computerScore variables present in playRound function to add score according to the victor and present it in the end of round 5 */
-        let playerScore = 0;
-        let computerScore = 0;
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        playerSelection = button.id;
+        computerSelection = computerPlay();
+        game();                 
+    })});        
 
-        /* Function containing conditionals with the possible results for the player's selection versus the computer's (including draw) and input which isn't valid (anything not part of the outcomes array) */
-        function playRound() {
-           
-            if ((playerSelection === computerSelection)) {
-                return("Draw! You both played the same hand.")
-            }
+/* playerScore and computerScore variables present in playRound function to add score according to the victor and present it in the end of round 5 */
+let playerScore = 0;
+let computerScore = 0;
 
-            if ((playerSelection === "rock" && computerSelection === "scissors") || (playerSelection === "scissors" && computerSelection === "paper") || (playerSelection === "paper" && computerSelection === "rock")) {
-                playerScore++;
-                return("You win: " + playerSelection + " beats " + computerSelection + ".")
-            }
+/* Function containing conditionals with the possible results for the player's selection versus the computer's (including draw) and input which isn't valid (anything not part of the outcomes array) */
+function playRound() {
+    
+    if ((playerSelection === computerSelection)) {
+        return("Draw! You both played the same hand.")
+    }
 
-            else {
-                computerScore++;
-                return("You lose: " + computerSelection + " beats " + playerSelection + ".")
-            }
-        }             
+    if ((playerSelection === "rock" && computerSelection === "scissors") || (playerSelection === "scissors" && computerSelection === "paper") || (playerSelection === "paper" && computerSelection === "rock")) {
+        playerScore++;
+        return("You win: " + playerSelection + " beats " + computerSelection + ".")
+    }
 
-        function game() {           
-            for ( i = 0; i < 1; i++ ) {
-                displayResult();
-            }
-        }
+    else {
+        computerScore++;
+        return("You lose: " + computerSelection + " beats " + playerSelection + ".")
+    }
+}             
 
-        function resetScore() {
-            playerScore = 0;
-            computerScore = 0;
-        }      
+function game() {           
+    for ( i = 0; i < 1; i++ ) {
+        displayResult();
+    }
+}
 
-        function displayResult() {
-            let newline = '\r\n';
-            const container = document.querySelector('#container')
-            const resultDisplay = document.createElement('div');
-            const finalResult = document.createElement('span');
-            resultDisplay.style.whiteSpace = "pre";
-            resultDisplay.textContent =
+function resetScore() {
+    playerScore = 0;
+    computerScore = 0;
+}      
 
-                "The computer played " + computerSelection + "." + newline + "You played " + playerSelection + "." + newline +
-                playRound(playerSelection, computerSelection) + newline +
-                "Player: " + playerScore + newline +
-                "Computer: " + computerScore +newline +
-                "- - - - - - - - - - - - - - - - - - -";
+function displayResult() {
+    let newline = '\r\n'; /* linebreak variable */
+    const container = document.querySelector('#container')
+    const resultDisplay = document.createElement('div');
+    const finalResult = document.createElement('span');
+    resultDisplay.style.whiteSpace = "pre";
+    resultDisplay.textContent =
 
-            if (playerScore === 5 ) {
-                    finalResult.textContent += ("[You win the game]");
-                    resetScore();
+        "The computer played " + computerSelection + "." + newline + "You played " + playerSelection + "." + newline +
+        playRound(playerSelection, computerSelection) + newline +
+        "Player: " + playerScore + newline +
+        "Computer: " + computerScore +newline +
+        "- - - - - - - - - - - - - - - - - - -";
 
-            } else if ( computerScore === 5 ) {
-                    finalResult.textContent += ("[You lose the game]");
-                    resetScore();                    
-            }   
-            
-            container.appendChild(resultDisplay);                   
-            container.insertBefore(resultDisplay, container.firstChild);
-            container.insertBefore(finalResult, resultDisplay);
-        }        
+    if (playerScore === 5 ) {
+            finalResult.textContent += ("[You win the game]");
+            resetScore();
+
+    } else if ( computerScore === 5 ) {
+            finalResult.textContent += ("[You lose the game]");
+            resetScore();                    
+    }   
+    
+    container.appendChild(resultDisplay);                   
+    container.insertBefore(resultDisplay, container.firstChild);
+    container.insertBefore(finalResult, resultDisplay);
+}        

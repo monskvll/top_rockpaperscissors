@@ -22,7 +22,6 @@ button {
     padding: 1em;
     box-sizing: border-box;
     transition: .2s;
-
 }
 
 button:hover {
@@ -47,8 +46,5 @@ button:active {
     0% {opacity: 0;}
     100% {opacity: 1;}
 }
-
-
-
 
 /* black: #252525; gray: #a4a4a4; white: #efefef; gold: #eaa807; red: #c42640
